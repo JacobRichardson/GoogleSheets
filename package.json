@@ -16,7 +16,10 @@
     "watch": "^1.0.2"
   },
   "scripts": {
-    "test": "node test/"
+    "test": "tape src/test/**/*.js",
+    "doc": "jsdoc -c jsdoc.json",
+    "lint": "eslint --fix . && echo 'Lint complete.'",
+    "watch": "watch 'clear && npm run -s test | tap-nirvana && npm run -s lint' src"
   },
   "author": "Jacob Richardson",
   "license": "ISC"
