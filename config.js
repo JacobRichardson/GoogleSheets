@@ -2,6 +2,9 @@
  * This is the config module.
  */
 
+// Imports.
+require('dotenv').config();
+
 /** 
  * Export the config object.
  */
