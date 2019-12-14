@@ -9,6 +9,9 @@ const googleSheet = require('../app/google-sheets');
 
 //Testing access spreadsheet.
 describe('accessSpreadsheet()', async assert => {
+
+	console.log('SPREADSHEET ID: ', process.env.PURCHASES_JULY2019_ID);
+
 	//Use the access spreadsheet function to retrieve the sheet.
 	const sheet = await googleSheet.accessSpreadsheet(
 		process.env.PURCHASES_JULY2019_ID
