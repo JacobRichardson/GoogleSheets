@@ -5,7 +5,7 @@
 //Imports
 require('dotenv').config();
 const describe = require('riteway').describe;
-const googleSheet = require('../../index');
+const googleSheet = require('../app/google-sheets');
 
 //Testing access spreadsheet.
 describe('accessSpreadsheet()', async assert => {

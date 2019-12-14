@@ -8,7 +8,7 @@
 //Imports.
 const GoogleSpreadsheet = require('google-spreadsheet');
 const promisify = require('util').promisify;
-const creds = require('./client_secret.json');
+const creds = require('../../client_secret.json');
 
 /**
  * This function gets access to the spreadsheet.
