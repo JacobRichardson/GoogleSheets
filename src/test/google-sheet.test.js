@@ -5,8 +5,8 @@
 //Imports
 require('dotenv').config();
 const test = require('tape');
-// const describe = require('riteway').describe;
-// const googleSheet = require('../app/google-sheets');
+//const describe = require('riteway').describe;
+//const googleSheet = require('../app/google-sheets');
 
 // Google sheets compile test.
 test('Google sheets complies.', async t => {
@@ -194,5 +194,60 @@ describe('deleteRow()', async assert => {
 		});
 	}, 100);
 });
+
+// Testing get cells.
+describe('getCells()', async assert => {
+
+	// Use the access spreadsheet function to retrieve the sheet.
+	const sheet = await googleSheet.accessSpreadsheet(
+		process.env.PURCHASES_JULY2019_ID
+	);
+
+	// The query to find the cells.
+	const query = {
+		'min-row': 1
+		, 'max-row': 1
+		, 'return-empty': true
+	}
+
+	// Retrieve the first row.
+	const cells = (await googleSheet.getCells(sheet, query));
+
+	// Verify the cells length to be 28.
+	assert({
+		given: 'the sheet and a query'
+		, should: 'return 28 cells.'
+		, actual: cells.length
+		, expected: 28
+	});
+});
+
+// Testing get cell.
+describe('getCell()', async assert => {
+
+	// Use the access spreadsheet function to retrieve the sheet.
+	const sheet = await googleSheet.accessSpreadsheet(
+		process.env.PURCHASES_JULY2019_ID
+	);
+
+	// Set row equal to 1.
+	const row = 1;
+
+	// Set col equal to 2.
+	const col = 2;
+
+	// Retrieve the cell.
+	const cell = (await googleSheet.getCell(sheet, row, col));
+
+	// Verify the cells value.
+	assert({
+		given: 'the sheet, a row, and a column'
+		, should: 'returns the correct value of the cell.'
+		, actual: cell.value
+		, expected: 'Quantity'
+	});
+});
+
+// TODO: Write save cell and save cells test.
 
 */
