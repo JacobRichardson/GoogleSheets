@@ -102,3 +102,69 @@ module.exports.deleteRow = function deleteRow (row) {
 		row.del();
 	}
 };
+
+/** 
+ * Retrieves an individual cell in the sheet.
+ * @param {Object} sheet A reference to the sheet.
+ * @param {Number} row The row of the desired cell.
+ * @param {Number} col The column of the desired cell.
+ */
+module.exports.getCell = async function getCell (sheet, row, col) {
+
+	// Create a query object to retrieve the row.
+	const query = {
+		'min-row': row
+		, 'max-row': row
+		, 'return-empty': true
+	}
+
+	// Retrieve the row of cells by using the query.
+	const cells = await promisify(sheet.getCells)(query);
+
+	// For each cell in cells.
+	for (let cell of cells) {
+
+		// If the cell and the row match the given row and cell.
+		if (cell.row === row && cell.col === col) {
+
+			// Return the cell.
+			return cell;
+		}
+	}
+}
+
+/** 
+ * Retrieves rows of cells.
+ * @param {Object} sheet A reference to the sheet.
+ * @param {Object} query The query object.
+ * @param {Number} query.minRow (supposed to be min-row) the beginning row.
+ * @param {Number} query.maxRow (supposed to be max-row) the ending row.
+ * @param {Boolean} query.returnEmpty (supposed to be return-empty) wether
+ * or not to return empty cells.
+ */
+module.exports.getCells = async function getCells (sheet, query) {
+
+	// Return the result of get cells with the query.
+	return await promisify(sheet.getCells)(query);
+}
+
+/** 
+ * Saves a cell.
+ * @param {Object} cell A reference to the cell.
+ */
+module.exports.saveCell = async function saveCell (cell) {
+
+	// Return the result of saving the cell.
+	return await promisify(cell.save);
+}
+
+/** 
+ * Saves multiple cells.
+ * @param {Object} sheet A reference to the sheet.
+ * @param {Array<Object>} cells An array of cells that need to be saved.
+ */
+module.exports.saveCells = async function saveCells (sheet, cells) {
+
+	// Return the result of doing a bulk update with the cells.
+	return await promisify(sheet.bulkUpdateCells)(cells);
+}
