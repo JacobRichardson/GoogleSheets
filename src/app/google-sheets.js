@@ -155,7 +155,7 @@ module.exports.getCells = async function getCells (sheet, query) {
 module.exports.saveCell = async function saveCell (cell) {
 
 	// Return the result of saving the cell.
-	return await promisify(cell.save);
+	return await promisify(cell.save)();
 }
 
 /** 
