@@ -21,9 +21,6 @@
 		"lint": "eslint --fix . && echo 'Lint complete.'",
 		"watch": "watch 'clear && npm run -s test | tap-nirvana && npm run -s lint' src"
 	},
-	"publishConfig": { 
-		"registry": "https://npm.pkg.github.com/" 
-	},
 	"author": "Jacob Richardson",
 	"license": "ISC"
 }
