@@ -1,5 +1,5 @@
 {
-	"name": "google-sheets",
+	"name": "google-sheet",
 	"version": "1.1.0",
 	"description": "A module to interface with Google sheets.",
 	"main": "index.js",
